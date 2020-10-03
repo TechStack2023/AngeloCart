@@ -22,7 +22,8 @@ $address="Name: ".$name.",Address: ".$address;
 if(verify($uid,$token)){
  mysqli_query($link,"insert into bulk_orders (user_id,store_id,datetimes,address,phone,landmark,lat,lng,order_details,status) values ($uid,1,'$update_date','$address','$phone','$landmark','$lat','$lng','$order_details',0)");
  $order_id=mysqli_insert_id($link);
-    
+  if($order_id==null)
+  return $a["error"]=true;  
    
 //$query2=mysqli_query($link,"update login_app set name='".$name."',address='".$address."',email='".$email."',landmark='".$landmark."'  where user_id='".$uid."'");
 //$row2=mysqli_fetch_assoc($query2);
