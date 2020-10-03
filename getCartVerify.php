@@ -24,11 +24,14 @@ $b["message"]="Success";
 array_push($a,$b);
 echo json_encode($a);
 }
-else{
-$b["success"]=200;
-$b["message"]="Invalid Credentials";
-array_push($a,$b);
-echo json_encode($a);
+else if($type==2){
+    $b["uid"]=$row["uid"];
+    $uid=$row["uid"];
+    $b["user_type"]=$type;
+    $query2=mysqli_query($link,"update cases set approve='2' where case_id='".$case_id."'") ;
+    $b["success"]=100;
+    array_push($a,$b);
+    echo json_encode($a); 
 }
 function clean($string) {
    // $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.

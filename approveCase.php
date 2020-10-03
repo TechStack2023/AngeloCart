@@ -30,18 +30,14 @@ if(mysqli_num_rows($sql)>0){
     array_push($a,$b);
     echo json_encode($a); 
 }
-}
-else{
-    $b["success"]=200;
-    $b["message"]="Invalid Credentials";
-    $b["id"]="";
-    $b["name"] = "";
-    $b["booth_id"] = "";
-    $b["booth_name"] = "";
-    $b["user_type"] = "";
-    $b["token"]="";
+else if($type==3){
+    $b["uid"]=$row["uid"];
+    $uid=$row["uid"];
+    $b["user_type"]=$type;
+    $query2=mysqli_query($link,"update terminal_cases set approve='2' where case_id='".$case_id."'") ;
+    $b["success"]=100;
     array_push($a,$b);
-    echo json_encode($a);
+    echo json_encode($a); 
 }
 }
 else{
@@ -49,5 +45,6 @@ $b["success"]=200;
 $b["message"]="Invalid Credentials";
 array_push($a,$b);
 echo json_encode($a);
+}
 }
 ?>
