@@ -24,7 +24,13 @@ if(verify($uid,$token)){
             array_push($a,$b);
             echo json_encode($a);
         }
-    else{                                                                                                                                     
+    else  if(mysqli_num_rows($query)==0)
+    {
+        $b["success"]=100;
+        $query2=mysqli_query($link,"delete from all_orders where order_id=$order_id");
+        array_push($a,$b);
+        echo json_encode($a);
+    }else{                                                                                                                                     
         $b["success"]=200;
         $b["message"]="No Data";
         array_push($a,$b);

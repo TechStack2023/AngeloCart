@@ -90,6 +90,20 @@ function showHintS(str) {
         xmlhttp.open("GET", "gethintBH.php?q=" + str, true);
         xmlhttp.send();
     }
+}function showHintTerminal(str) {
+    if (str=="0") { 
+        document.getElementById("root").innerHTML = "<font color='red'>Please Select a User</font>";
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("root").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "root.php.php?q=" + str, true);
+        xmlhttp.send();
+    }
 }
 </script>
     <style>
