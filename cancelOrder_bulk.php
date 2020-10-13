@@ -30,6 +30,23 @@ if(verify($uid,$token)){
         $query2=mysqli_query($link,"delete from all_orders where order_id=$order_id");
         array_push($a,$b);
         echo json_encode($a);
+    }       
+   
+   $query=mysqli_query($link,"select * from terminal_orders where order_id=$order_id and store_id=1 and user_id=$uid and status=0") ;
+        $d=array();
+        if(mysqli_num_rows($query)>0)
+        {
+            $b["success"]=100;
+            $query2=mysqli_query($link,"delete from mrinal where order_id=$order_id");
+            array_push($a,$b);
+            echo json_encode($a);
+        }
+    else  if(mysqli_num_rows($query)==0)
+    {
+        $b["success"]=200;
+        $query2=mysqli_query($link,"delete from mrinal where order_id=$order_id");
+        array_push($a,$b);
+        echo json_encode($a);
     }else{                                                                                                                                     
         $b["success"]=200;
         $b["message"]="No Data";
